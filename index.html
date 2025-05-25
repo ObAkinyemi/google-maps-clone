@@ -17,21 +17,19 @@
         <div>
             <label for="timezones">Select a Timezone</label>
             <select name="timezones" id="timezones"></select>
-            <button id="fetch_city">Enter</button> <br>
-            <input type="text" placeholder="example for API's w Pokemon" id="pokemon_in">
-            <button id="fetch_pokemon" onclick="fetchPokeData()">Fetch Pokemon</button> <br>
-            <img src="" alt="pokemon-sprite" id="pokemon-sprite" style="display: none;">
+            <button id="fetch_tz">Enter</button> <br>
         </div>
             <!-- outputs -->
         <span>
-            <!-- Weather -->
             <!-- Time -->
+             <div id="time-disp"></div>
+            <!-- Weather -->
             <!-- News -->
         </span>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         
-        <script src="script.js" async defer></script>
+        <script type="module" src="script.js" async defer></script>
     </body>
 </html>
