@@ -1,4 +1,4 @@
-fetchPokeData();
+
 
 
 const cityBtn = document.getElementById("fetch_city");
@@ -15,13 +15,13 @@ async function fetchPokeData() {
     try{
         const pokename = document.getElementById("pokemon_in").value.toLowerCase();
 
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokename}`);
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokename}`); //gets data
 
-        if(!response.ok){
+        if(!response.ok){ //ok is the indicator for this api for whether the data (promise) can be fetched (fulfilled).
             throw new Error("Could not fetch data");
         }
 
-        const data = await response.json();
+        const data = await response.json(); //the data that you want when the data is fetched, so you can use it.
         // console.log(data);
         const pokemonSprite = data.sprites.front_default;
         const pokeImage = document.getElementById("pokemon-sprite");
