@@ -1,15 +1,49 @@
+timezone_list = ['Africa/Abidjan', 'America/Aruba', 'America/Argentina/Ushuaia', 'Etc/GMT-4', 'Europe/Zaporozhye', 'Pacific/Honolulu', 'US/East-Indiana', 'Zulu'];
 
+const selectElement = document.getElementById('timezones');
 
+timezone_list.forEach(timezone => {
+    let timezoneElement = document.createElement('option');
+    timezoneElement.text = timezone;
+    selectElement.appendChild(timezoneElement);
+});
 
 const cityBtn = document.getElementById("fetch_city");
 cityBtn.addEventListener("click", getCity);
 
+async function getCity () {
+
+
+    try {
+        const timezone = document.getElementById("timezones").value;
+        let timezone_info = timezone.split("/");
+        let slash_Count = 0;
+        console.log(timezone);
+        console.log(timezone_info);
+        console.log(typeof(timezone));
+        
+        for (i in timezone_info){
+            slash_Count++;
+        }
+        slash_Count -= 1;
+
+        console.log(slash_Count);
+        // if slash_Count = 2
+
+    } catch (error) {
+        console.error(error);
+    }
+
+}
+
+
+
+
+
 const pokeBtn = document.getElementById("fetch_pokemon");
 pokeBtn.addEventListener("click", fetchPokeData);
 
-function getCity () {
-    console.log(document.getElementById("city_in").value);
-}
+
 
 async function fetchPokeData() {
     try{
