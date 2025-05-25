@@ -1,7 +1,7 @@
 fetchTimezones();
 
 
-const cityBtn = document.getElementById("fetch_city");
+const cityBtn = document.getElementById("fetch_tz");
 cityBtn.addEventListener("click", getCity);
 
 
@@ -64,35 +64,4 @@ async function getCity () {
         console.error(error);
     }
 
-}
-
-
-
-
-
-const pokeBtn = document.getElementById("fetch_pokemon");
-pokeBtn.addEventListener("click", fetchPokeData);
-
-
-
-async function fetchPokeData() {
-    try{
-        const pokename = document.getElementById("pokemon_in").value.toLowerCase();
-
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokename}`); //gets data
-
-        if(!response.ok){ //ok is the indicator for this api for whether the data (promise) can be fetched (fulfilled).
-            throw new Error("Could not fetch data");
-        }
-
-        const data = await response.json(); //the data that you want when the data is fetched, so you can use it.
-        // console.log(data);
-        const pokemonSprite = data.sprites.front_default;
-        const pokeImage = document.getElementById("pokemon-sprite");
-        pokeImage.src = pokemonSprite;
-        pokeImage.style.display = "block";
-    }
-    catch(error){
-        console.error(error);
-    }
 }
