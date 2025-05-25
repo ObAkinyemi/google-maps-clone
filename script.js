@@ -1,15 +1,30 @@
-timezone_list = ['Africa/Abidjan', 'America/Aruba', 'America/Argentina/Ushuaia', 'Etc/GMT-4', 'Europe/Zaporozhye', 'Pacific/Honolulu', 'US/East-Indiana', 'Zulu'];
+fetchTimezones();
 
-const selectElement = document.getElementById('timezones');
-
-timezone_list.forEach(timezone => {
-    let timezoneElement = document.createElement('option');
-    timezoneElement.text = timezone;
-    selectElement.appendChild(timezoneElement);
-});
 
 const cityBtn = document.getElementById("fetch_city");
 cityBtn.addEventListener("click", getCity);
+
+
+async function fetchTimezones() {
+    try {
+        const response = await fetch("timezones.json");
+        const selectElement = document.getElementById('timezones');
+
+        if(!response.ok){
+            throw new Error("could not fetch timzons.json");
+        }
+
+        const data = await response.json();
+        data.forEach(timezone => {
+        let timezoneElement = document.createElement('option');
+        timezoneElement.text = timezone;
+        selectElement.appendChild(timezoneElement);
+});
+        
+    } catch (error) {
+        console.error('Could not fetch the json file', error);
+    }
+}
 
 async function getCity () {
 
@@ -39,7 +54,7 @@ async function getCity () {
         }
 
         if (!response.ok){
-            throw new Error("Could Not Fetch Data");
+            throw new Error("Could Not Fetch Data and elif block isn't working");
         }  
         
         let data = await response.json();
