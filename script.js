@@ -18,6 +18,7 @@ async function getCity () {
         const timezone = document.getElementById("timezones").value;
         let timezone_info = timezone.split("/");
         let slash_Count = 0;
+        let response;
         console.log(timezone);
         console.log(timezone_info);
         console.log(typeof(timezone));
@@ -26,9 +27,23 @@ async function getCity () {
             slash_Count++;
         }
         slash_Count -= 1;
+        
+        if (slash_Count == 2){
+            response = await fetch(`http://worldtimeapi.org/api/timezone/${timezone_info[0]}/${timezone_info[1]}/${timezone_info[2]}`);
+        } else if(slash_Count == 1){
+            response = await fetch(`http://worldtimeapi.org/api/timezone/${timezone_info[0]}/${timezone_info[1]}`);
+        } else if(slash_Count == 0){
+            response = await fetch(`http://worldtimeapi.org/api/timezone/${timezone_info[0]}`);
+        } else{
+            console.error("The response elif block isn't working.");
+        }
 
-        console.log(slash_Count);
-        // if slash_Count = 2
+        if (!response.ok){
+            throw new Error("Could Not Fetch Data");
+        }  
+        
+        let data = await response.json();
+        console.log(data);
 
     } catch (error) {
         console.error(error);
