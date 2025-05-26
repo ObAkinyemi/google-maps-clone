@@ -1,0 +1,61 @@
+{
+    "coord": {
+        "lon": -94.04,
+        "lat": 33.44
+    },
+    "weather": [
+        {
+            "id": 804,
+w            "main": "Clouds",
+w            "description": "overcast clouds",
+w            "icon": "04n"
+        }
+    ],
+    "base": "stations",
+    "main": {
+w        "temp": 20.15,
+w        "feels_like": 20.68,
+w        "temp_min": 19.44,
+w        "temp_max": 22.04,
+        "pressure": 1014,
+w        "humidity": 94,
+        "sea_level": 1014,
+        "grnd_level": 1003
+    },
+    "visibility": 10000,
+w    "wind": {
+        "speed": 7.72,
+        "deg": 140,
+        "gust": 13.38
+    },
+w    "clouds": {
+        "all": 100
+    },
+w   "dt": 1748239030,  Unixtime of forecasted data
+    "sys": {
+        "type": 2,
+        "id": 62880,
+w        "country": "US",
+w        "sunrise": 1748257777,
+w        "sunset": 1748308633
+    },
+    "timezone": -18000,
+    "id": 4133367,
+    "name": "Texarkana",
+    "cod": 200
+}
+
+
+data.clouds["all"]
+data.main.temp
+data.main["feels_like"]
+data.main["temp_min"]
+data.main["temp_max"]
+data.main.rain["1h"] //1 hour interval
+data.sys.sunrise
+data.sys.sunset
+data.weather[0].main
+data.weather[0].description
+data.weather[0].icon
+data.wind["speed"]
+data.wing["gust"]
