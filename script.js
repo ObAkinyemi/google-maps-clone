@@ -3,7 +3,7 @@ getWeather();
 
 const cityBtn = document.getElementById("fetch_tz");
 cityBtn.addEventListener("click", getTimeInfo);
-
+cityBtn.addEventListener("click", getCoords);
 
 async function getTimeInfo () {
 
@@ -74,18 +74,48 @@ async function fetchTimezones() {
 
 async function getWeather () {
     try {
-
-        let lat =5.359952;
-        let long = -4.008256;
-        let api_key_weather = '05bffcb762a7729a0fcf37a9b048ffb4';
-        const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=33.44&lon=-94.04&appid=${api_key_weather}&units=imperial`);
         
+        const api_key = '05bffcb762a7729a0fcf37a9b048ffb4';
+
+
+        const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=33.44&lon=-94.04&appid=${api_key}&units=imperial`);
+
         if (!res.ok){
             throw new Error("Could not fetch data");
         }
 
         data = await res.json();
+
         console.log(data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function getCoords () {
+
+    try {
+        let coords = [];
+        const timezone_in = document.getElementById("timezones").value;
+        const api_key = '05bffcb762a7729a0fcf37a9b048ffb4';
+        let in_split = timezone_in.split("/");
+        let city_name = in_split[in_split.length-1];
+        
+        const res = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city_name}&limit=1&appid=${api_key}`) 
+        console.log(res);
+        if(!res.ok){
+            throw new Error("Could not fetch data");
+        }
+        
+        data = await res.json();
+        console.log(data);
+
+        let lat = data[0].lat;
+        let long = data[0].lon;
+        coords.push(lat);
+        coords.push(long);
+        console.log(coords);
+        return coords;
     } catch (error) {
         console.error(error);
     }
